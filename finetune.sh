@@ -18,10 +18,12 @@ git clone -b $BRANCH https://github.com/NVIDIA/NeMo $NEMO_DIR
 # Run Fine-Tuning Script
 # -----------------------------
 echo "🚀 Starting fine-tuning..."
+NEMO_MODEL_PATH="./models/stt_en_fastconformer_hybrid_large_pc.nemo"
+
 python $NEMO_DIR/examples/asr/speech_to_text_finetune.py \
     --config-path="../asr/conf/fastconformer/hybrid_transducer_ctc/" \
     --config-name=fastconformer_hybrid_transducer_ctc_bpe \
-    +init_from_pretrained_model=stt_en_fastconformer_hybrid_large_pc \
+    +init_from_nemo_model="$NEMO_MODEL_PATH" \
     ++model.train_ds.manifest_filepath="$DATA_DIR/an4_converted/train_manifest.json" \
     ++model.validation_ds.manifest_filepath="$DATA_DIR/an4_converted/test_manifest.json" \
     ++model.optim.sched.d_model=1024 \
