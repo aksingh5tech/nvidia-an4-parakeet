@@ -11,6 +11,7 @@ apt-get install -y sox libsndfile1 ffmpeg libsox-fmt-mp3 jq
 # Python packages (via pip)
 # -----------------------------
 echo "🐍 Installing Python packages..."
+pip install wheel
 pip install wget
 pip install text-unidecode
 pip install matplotlib>=3.3.2
